@@ -1,8 +1,3 @@
-<?php
-$randval=  mt_rand(9999999, 99999999);
-str_pad($randval, 8, '0', STR_PAD_LEFT);
-echo $randval;
-?>
 
 <?php
 $servername = "127.0.0.1";
@@ -19,12 +14,17 @@ $sql= "select * from apptask where id is null order by rand() limit 1";
 if ($result=mysqli_query($conn,$sql))
 {
 	// Fetch one and one row
-	while ($row=mysqli_fetch_row($result))
+	if ($row=mysqli_fetch_row($result))
 	{
+$randval=  mt_rand(9999999, 99999999);
+str_pad($randval, 8, '0', STR_PAD_LEFT);
+echo $randval;
+
 $sql= "update apptask set id = $randval where taskid =" . $row[3];
 
 		
 	}
+else{ echo "No Task To Assign";}
 	// Free result set
 	mysqli_free_result($result);
 }
