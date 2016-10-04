@@ -31,10 +31,6 @@ $sql= "update apptask set id = $randval where taskid =" . $row[3];
 
 
 if ($conn->query($sql) === TRUE) 
- echo "This is your Target";
 
 ?>
-<br>
-<input type="button" value="Home" class="homebutton" id="btnHome"
-onClick="document.location.href='rvhome.php'" />
 
