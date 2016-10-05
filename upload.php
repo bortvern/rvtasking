@@ -47,7 +47,7 @@ echo $_POST["mytext"];
 <?php
 // define variables and set to empty values
 $desc = "";
-
+$cue = $_POST["cue"];
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $desc = test_input($_POST["mytext"]);
 }
@@ -71,8 +71,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
         die("Connection failed:" . $conn->connect_error);
 }
-
-$sql = "INSERT INTO apptask (description) VALUES ('$desc')";
+$sql = "INSERT INTO apptask (cue, description) VALUES ('$cue','$desc')";
 if ($conn->query($sql) === TRUE) {
         echo "record created successfully";
 } else {

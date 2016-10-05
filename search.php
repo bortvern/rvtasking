@@ -10,16 +10,18 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
 if ($conn->connect_error) {
         die("Connection failed:" . $conn->connect_error);}
-$sql= "select apptask.description, images.file from apptask join images on apptask.taskid=images.taskid where id=" . $_POST["searchval"];
+$sql= "select apptask.cue, apptask.description, images.file from apptask join images on apptask.taskid=images.taskid where id=" . $_POST["searchval"];
 
 if ($result=mysqli_query($conn,$sql))
 {
 
 while ($row = $result->fetch_row()) {
-      echo '<A HREF="uploads/' . $row[1] . '">upload</A><br />';
-echo $row[0];
+      echo '<A HREF="uploads/' . $row[2] . '">upload</A><br />';
+echo "$row[0] \n $row[1]";
 
-$udesc= $row[0];
+ 
+
+$udesc= $row[1];
     }
 $sql= "select taskid from apptask where id= $srchsql";
 $imgupdate= $row[0];
